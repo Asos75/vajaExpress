@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{{title}}</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <nav class="navbar">
+      <div class="hamburger-icon" onclick="toggleMenu()" visu>&#9776;</div>
+      
+      <ul class="question-items">
+        <li><a href='/'>Domov</a></li>
+        <li><a href='/question/hot'>Vroče</a></li>
+        {{#if session.userId}}
+        <li><a href='/question/mylist'>Moja vprašanja</a></li>
+        <li><a href='/question/publish'>Objavi vprašanje</a></li>
+        {{/if}}
+      </ul>
+
+      <ul class="profile-items">
+        {{#if session.userId}}
+        <li><a href='/users/profile'>Profil</a></li>
+        <li><a href='/users/logout'>Odjava</a></li>
+        {{else}}
+        <li><a href='/users/login'>Prijava</a></li>
+        <li><a href='/users/register'>Registracija</a></li>
+        {{/if}}
+      </ul>
+    </nav>
+    <div class="content">
+      {{{body}}}
+    </div>
+
+    <script>
+      var navbarHeight = document.querySelector('.navbar').offsetHeight;
+      document.documentElement.style.setProperty('--navbar-height', navbarHeight + 'px');
+
+      function toggleMenu() {
+        var questionItems = document.querySelector('.navbar .question-items');
+        questionItems.classList.toggle('open');
+      }
+    </script>
+</html>

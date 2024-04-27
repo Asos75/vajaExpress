@@ -1,0 +1,22 @@
+<h1 class="title">Objavi vprašanje</h1>
+<div class="container standard-form publish-form">    
+    <form action="publish" method="POST">
+        <div>
+            <div>
+                <label for="title" class="form-label">Naslov</label>
+            </div>
+            <div>
+                <input type="text" class="form-control" id="title" name="title">
+            </div>
+        </div>
+        <div>
+            <div>
+                <label for="description" class="form-label">Opis</label>
+            </div>
+            <div>
+                <textarea type="text" class="form-control" id="description" name="description" rows="5" ></textarea>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary" name="store">Objavi</button>
+    </form>    
+</div>

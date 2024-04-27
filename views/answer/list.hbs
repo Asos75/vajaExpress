@@ -1,0 +1,162 @@
+<h1 class="title">Odgovori:</h1>
+<div class="question">
+    <h2>
+        {{question.title}}
+    </h2>
+    <p>
+    <div class="prof">
+        <img src="{{question.postedBy.path}}" width="50"/>
+        <a class="stats uname" href="/users/stats/{{question.postedBy._id}}"> {{question.postedBy.username}}</a></p>
+    </div>
+    <p>{{question.description}}</p>
+        
+    {{#if isset}}
+        <p><a class="reaction" {{#if question.upvoted}} style="color:#27ae60" {{/if}}href="/question/upvote/{{question._id}}">▲</a> {{question.upvotesCount}} {{question.downvotesCount}} <a class="reaction" {{#if question.downvoted}} style="color:#ED4C67" {{/if}}href="/question/downvote/{{question._id}}">▼</a></p>
+    {{else}}
+        <a>▲</a>{{question.upvotesCount}} {{question.downvotesCount}}<a>▼</a>
+    {{/if}}
+    <p class="views">Ogledi:{{question.viewCount}}</p>
+    <div class="date">
+        {{question.date}}
+    </div>
+</div>
+
+
+{{#if isset}}
+    <div class="response-container">
+        <form action="../create/{{question._id}}" method="POST">
+            <label for="response">Your Response:</label><br>
+            <input type="text" id="response" name="response"><br>
+            <button type="submit">Objavi odgovor</button>
+        </form>  
+    </div>
+{{/if}}
+
+{{#if featured}}
+    <div class="featured-container question">
+         <p>
+            <div class="prof">
+                <img src="{{featured.postedBy.path}}" width="50"/> 
+                <a class="stats" href="/users/stats/{{featured.postedBy._id}}">{{featured.postedBy.username}}</a>
+            </div>
+            <div class="actions">
+                {{#if isset}}
+                    <form action="../../comment/acomment/{{featured._id}}" class="mark" method="post">
+                        <input type="text" id="content" name="content">
+                        <input type="submit" class="action" value="#" />
+                    </form>
+                {{/if}}
+                {{#if featured.canFeature}}
+                <form action="../../answer/unmark/{{question._id}}" class="mark" method="post">
+                        <input type="submit" class="action" value="📌" />
+                    </form>
+                {{/if}}{{#if featured.own}}
+                    <form action="../../answer/delete/{{featured._id}}" class="delete" method="post">
+                        <input type="submit" class="action" value="🗑" />
+                    </form>
+                {{/if}}
+            </div>    
+        </p>
+        <p>{{featured.content}}</p>
+        
+        {{#if featured.isset}}
+           <p><a class="reaction" {{#if featured.upvoted}} style="color:#27ae60" {{/if}}href="/answer/upvote/{{featured._id}}">▲</a> {{featured.upvotesCount}} {{featured.downvotesCount}} <a class="reaction" {{#if featured.downvoted}} style="color:#ED4C67" {{/if}}href="/answer/downvote/{{featured._id}}">▼</a></p>
+        {{else}}
+            <a>▲</a>{{featured.upvotesCount}} {{featured.downvotesCount}}<a>▼</a>
+        {{/if}}
+        {{#if featured.hasComments}}
+            <div class ="comments">
+                <h3 class="comment-title">Comments:</h3>
+                {{#each featured.comments}}
+                    <div class="comment">
+                        {{#if own}}
+                            <form action="../../comment/adelete/{{_id}}" class="delete deleteX" method="post">
+                                <input type="submit" class="action" value="X" />
+                            </form>
+                        {{/if}}
+                        <div class="date">{{date}}</div><a class="stats uname" href="/users/stats/{{postedBy._id}}">{{postedBy.username}}:</a>{{content}}
+                    </div>   
+                {{/each}}
+            </div>
+        {{/if}}    
+        <div class="date">
+            {{featured.date}}
+        </div>
+    </div>
+{{/if}}
+
+{{#each answers}}
+<div class="question">
+    <p>
+        <div class="prof">
+            <img src="{{postedBy.path}}" width="50" alt="profile picture"/> 
+            <a class="stats" href="/users/stats/{{postedBy._id}}">{{postedBy.username}}</a>
+        </div>
+        <div class="actions">
+            {{#if isset}}
+                <form action="../../comment/acomment/{{_id}}" class="mark" method="post">
+                    <input type="text" id="content" name="content">
+                    <input type="submit" class="action" value="#" />
+                </form>
+            {{/if}}
+            {{#if canFeature}}
+                <form action="../../answer/mark/{{_id}}" class="mark" method="post">
+                    <input type="submit" class="action" value="📌" />
+                </form>
+            {{/if}}
+            {{#if own}}
+                <form action="../../answer/delete/{{_id}}" class="delete" method="post">
+                    <input type="submit" class="action" value="🗑" />
+                </form>
+            {{/if}}
+        </div>    
+    </p>
+    <p>{{content}}</p>
+    {{#if isset}}
+        <p><a class="reaction" {{#if upvoted}} style="color:#27ae60" {{/if}}href="/answer/upvote/{{_id}}">▲</a> {{upvotesCount}} {{downvotesCount}} <a class="reaction" {{#if downvoted}} style="color:#ED4C67" {{/if}}href="/answer/downvote/{{_id}}">▼</a></p>
+    {{else}}
+        <a>▲</a> {{upvotesCount}} {{downvotesCount}}<a>▼</a>
+    {{/if}}
+    {{#if hasComments}}
+        <div class ="comments">
+            <h3 class="comment-title">Comments:</h3>
+            {{#each comments}}
+                <div class="comment">
+                    {{#if own}}
+                        <form action="../../comment/adelete/{{_id}}" class="delete deleteX" method="post">
+                            <input type="submit" class="action" value="X" />
+                        </form>
+                    {{/if}}
+                    <div class="date">{{date}}</div><a class="stats uname" href="/users/stats/{{postedBy._id}}">{{postedBy.username}}:</a>{{content}}
+                </div>   
+            {{/each}}
+        </div>
+    {{/if}}    
+    <div class="date">
+        {{date}}
+    </div>
+</div>
+{{/each}}
+
+<script>
+
+    var dateElements = document.querySelectorAll('.date');
+    dateElements.forEach(function(element) {
+        var originalDate = element.innerHTML.trim();
+        var dateObj = new Date(originalDate);
+
+        var options = {
+            hour12: false,
+            hour: '2-digit',
+            minute: '2-digit',
+            year: 'numeric',
+            month: '2-digit',
+            day: '2-digit'
+        };
+
+        var formattedDateTime = dateObj.toLocaleTimeString('en-GB', options);
+
+        element.innerHTML = formattedDateTime;
+    });
+    
+</script>

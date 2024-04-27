@@ -1,0 +1,25 @@
+<h1 class="title">{{user.username}}</h1>
+<div class="container">
+    <img class="profile-picture" src="{{user.path}}" width="300"/><br/>
+    <div class="stats">
+        <div class="post-count">
+            <p>Objave</p>
+            <p>{{user.postCount}}</p>
+        </div>
+        <div class="response-count">
+            <p>Odgovori</p>
+            <p>{{user.responseCount}}</p>
+        </div>
+        <div class="upvote-count">
+            <p>Upvotes</p>
+            <p>Q:{{user.upvoteCountQ}}</p>
+            <p>A:{{user.upvoteCountA}}</p>
+        </div>
+        <div class="downvote-count">
+            <p>Downvotes</p>
+            <p>Q:{{user.downvoteCountQ}}</p>
+            <p>A:{{user.downvoteCountA}}</p>
+        </div>
+    </div>
+    <p><b>Mail: </b>{{user.email}}</p>
+</div>

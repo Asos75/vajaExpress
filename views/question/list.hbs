@@ -1,0 +1,80 @@
+<script>
+  function stopPropagation(event) {
+    event.stopPropagation();
+  }
+</script>
+
+<h1 class="title">Vprašanja:</h1>
+{{#each questions}}
+<div class="question" onclick="window.location.href='../answer/list/{{_id}}'">
+    <div class="prof">
+        <img src="{{postedBy.path}}" width="50"/>
+        <a class="stats" href="/users/stats/{{postedBy._id}}">{{postedBy.username}}</a> 
+    </div>
+    <div class="actions">
+        {{#if isset}}
+            <form action="../../comment/qcomment/{{_id}}" class="mark" method="post">
+                <input type="text" onclick="stopPropagation(event)" id="content" name="content">
+                <input type="submit" class="action" value="#" />
+            </form>
+        {{/if}}
+        {{#if own}}
+            <form action="question/delete/{{_id}}" class="delete" method="post">
+                <input type="submit" class="action" value="🗑" />
+            </form>
+        {{/if}}
+    </div>
+    
+    <h2>{{title}}</h2>
+    
+    <p>{{description}}</p>
+    
+    {{#if isset}}
+        <p><a class="reaction" {{#if upvoted}} style="color:#27ae60" {{/if}}href="/question/upvote/{{_id}}">▲</a> {{upvotesCount}} {{downvotesCount}} <a class="reaction" {{#if downvoted}} style="color:#ED4C67" {{/if}}href="/question/downvote/{{_id}}">▼</a></p>
+    {{else}}
+        <a>▲</a>{{upvotesCount}} {{downvotesCount}}<a>▼</a>
+    {{/if}}
+    {{#if hasComments}}
+        <div class ="comments">
+            <h3 class="comment-title">Comments:</h3>
+            {{#each comments}}
+                <div class="comment">
+                    {{#if own}}
+                        <form action="../../comment/qdelete/{{_id}}" class="delete deleteX" method="post">
+                            <input type="submit" class="action" value="X" />
+                        </form>
+                    {{/if}}
+                    <div class="date">{{date}}</div><a class="stats uname" href="/users/stats/{{postedBy._id}}">{{postedBy.username}}:</a>{{content}}
+                </div>   
+            {{/each}}
+        </div>
+    {{/if}}    
+     <div class="date">
+        {{date}}
+    </div>
+</div>
+{{/each}}
+
+<script>
+
+    var dateElements = document.querySelectorAll('.date');
+    dateElements.forEach(function(element) {
+        var originalDate = element.innerHTML.trim();
+        var dateObj = new Date(originalDate);
+
+        var options = {
+            hour12: false,
+            hour: '2-digit',
+            minute: '2-digit',
+            year: 'numeric',
+            month: '2-digit',
+            day: '2-digit'
+        };
+
+        var formattedDateTime = dateObj.toLocaleTimeString('en-GB', options);
+
+        element.innerHTML = formattedDateTime;
+    });
+    
+
+</script>

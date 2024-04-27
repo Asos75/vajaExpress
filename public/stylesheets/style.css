@@ -1,0 +1,393 @@
+body {
+  margin: 0;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: #333333;
+}
+
+.navbar {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0; 
+  font-size: 20px;
+  background-color: black;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  z-index: 1000;
+}
+.navbar ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar ul li {
+  display: inline;
+  margin-right: 20px;
+}
+
+.navbar ul li:last-child {
+  margin-right: 30px;
+}
+
+.navbar ul li a {
+  color: white;
+  text-decoration: none;
+}
+
+.content {
+  padding-top: 30px;
+}
+
+.reaction,
+.stats {
+  color:gray;
+  text-decoration: none;
+}
+
+/* Question list related */
+.question {
+  width: 60%; 
+  margin: 0 auto;
+  background-color: #202020;
+  border: 2px solid black;
+  color: white;
+  padding: 10px; 
+  margin-bottom: 20px; 
+  position: relative;
+}
+.prof {
+  display:flex;
+}
+
+.actions {
+  display:flex;
+  position: absolute;
+  top: 0; 
+  right: 0; 
+  margin-top: 10px; 
+  margin-right: 10px; 
+  background-color: transparent; 
+  border: none; 
+  padding: 0;
+  color: white; 
+}
+
+.action{
+  outline: none;
+  background-color: transparent;
+  border: none; 
+  color: white;
+  font-size: large;
+  border-radius: 5px;
+}
+
+.action:hover{
+  background-color: rgb(42, 42, 42);
+  transition: 0.5s background-color;
+  cursor: pointer;
+}
+
+.question h2 {
+  margin-right: 50px;
+}
+
+.title {
+  color: white;
+  text-align: center; 
+}
+
+/* additional style for featuring the answer*/
+
+.featured-container {
+  border: 2px solid gold;
+  background-color: #8a780e; 
+  color: black;
+}
+
+.featured-container a{
+  color: rgb(64, 64, 64);
+}
+
+.featured-container p {
+  margin-bottom: 10px; 
+}
+
+/* css for response field */
+
+.response-container {
+  width: 60%; 
+  margin: 0 auto; 
+  background-color: #202020; 
+  color: white;
+  padding: 10px; 
+  border: 2px solid black;
+  margin-bottom: 20px;
+}
+
+.response-container form {
+  text-align: center; 
+}
+
+.response-container label {
+  display: block;
+  margin-bottom: 5px; 
+}
+
+.response-container input[type="text"] {
+  width: 100%; 
+  padding: 8px; 
+  margin-bottom: 10px; 
+  box-sizing: border-box;
+}
+
+.response-container button[type="submit"] {
+  background-color: black;
+  color: white;
+  border: none; 
+  padding: 10px 20px;
+  cursor: pointer; 
+}
+
+.response-container button[type="submit"]:hover {
+  background-color: #333;
+}
+
+/* profile css */ 
+
+.container {
+  width: 50%; 
+  margin: 0 auto; 
+  border: 2px solid black;
+  padding: 20px;
+  background-color: #202020; 
+  color: white;
+}
+
+.edit {
+  display: block;
+  width: 95%;
+  text-align: center;
+  background-color: black;
+  color: white;
+  text-decoration: none;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.edit:hover {
+  background-color: #333;
+}
+
+.profile-picture {
+  display: block;
+  margin: 0 auto;
+  margin-bottom: 20px;
+}
+
+/*additional css for stats display*/
+
+.stats {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+.stats > div {
+  flex: 1;
+  text-align: center;
+  padding: 10px;
+  border: 2px solid #202020;
+  border-radius: 5px;
+  margin-right: 10px;
+}
+
+.stats > div:last-child {
+  margin-right: 0;
+}
+
+.stats p:first-child {
+  margin-bottom: 5px;
+}
+
+.stats p:last-child {
+  font-weight: bold;
+}
+
+/* css for forms */
+
+
+.standard-form {
+  width: 300px; 
+  margin: 0 auto; 
+  background-color: #202020;
+  padding: 20px; 
+}
+
+.standard-form [type="text"],
+.standard-form [type="password"],
+.standard-form [type="submit"],
+.standard-form [type="file"] {
+  width: 100%; 
+  padding: 10px; 
+  box-sizing: border-box;
+  margin-bottom: 10px; 
+}
+
+.standard-form [type="submit"] {
+  background-color: black;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 16px; 
+}
+
+.standard-form [type="submit"]:hover {
+  background-color: #333;
+}
+
+.standard-form input[type="file"] {
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+  background-color: #202020;
+  color: white;
+  border: 2px solid black;
+}
+
+.picture-form input[type="file"]:hover {
+  background-color: #333;
+}
+
+.publish-form{
+  width: 60%;
+}
+
+/* CSS for handling comments */
+
+.comment a {
+  display: inline-block;
+  margin: 0px;
+  padding: 0px;
+}
+
+.comment .action {
+  padding: 0px;
+  font-size: 12px;
+  color: red;
+}
+
+.comment p {
+  margin: 0px;
+}
+.comment {
+  padding: 3px;
+  display: flex;
+}
+
+.comments {
+  margin-bottom: 10px;
+  padding: 3px;
+  border: 2px solid black;
+}
+
+.date,
+.uname,
+.deleteX {
+  margin-right: 3px;
+}
+
+.comment-title{
+  padding: 3px;
+  margin: 0;
+}
+
+/* Responsive behaviour*/ 
+
+
+.navbar .question-items.open {
+ display: block;
+ position: fixed; 
+ left: 0;
+ top: var(--navbar-height);
+ width: fit-content;
+ background-color: black;
+ z-index: 1000; 
+ padding: 5px;
+
+}
+
+      
+.navbar .question-items {
+  flex-direction: column; 
+  align-items: flex-start; 
+  z-index: 1000; 
+}
+
+.navbar .hamburger-icon {
+  display: none; 
+}
+
+.navbar .hamburger-icon:hover {
+  cursor: pointer;
+}
+
+.navbar .question-items.open{
+  display: flex;
+}
+
+@media screen and (max-width: 768px) {
+  .navbar .hamburger-icon {
+    display:block; 
+  }
+
+  .navbar .question-items{
+    display: none;
+  }
+
+  .navbar .question-items {
+    flex-direction: column; 
+    align-items: flex-start; 
+  }
+
+  .navbar {
+    font-size: 16px;
+  }
+  
+  .question,
+  .response-container,
+  .standard-form,
+  .container {
+    width: 90%; 
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .navbar {
+    font-size: 14px;
+  }
+
+  .navbar .hamburger-icon {
+    display:block; 
+  }
+
+  .navbar .question-items{
+    display: none;
+  }
+
+  .navbar .question-items {
+    flex-direction: column;
+    align-items: flex-start; 
+  }
+
+  .question,
+  .response-container,
+  .standard-form,
+  .container {
+    width: 100%; 
+  }
+}
